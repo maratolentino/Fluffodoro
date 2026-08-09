@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluffodoro</title>
+    <!-- Browser Tab Logo -->
+    <link rel="icon" type="image/png" href="assets/images/LOGO.png">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="fluffodoro-bg d-flex align-items-center">
+
+    <!-- Music Container  -->
+    <div class="music-menu-container">
+        <div class="music-menu-bar">
+            <button class="btn btn-pixel btn-pixel-sm" id="musicToggleBtn" title="Toggle Music Menu">
+                🎵 <span class="d-none d-sm-inline" id="musicStatusText">MUSIC: OFF</span>
+            </button>
+        </div>
+
+        <!--Music Dropdown -->
+        <div class="pixel-music-panel d-none" id="musicPanel">
+            <div class="panel-header mb-2 fw-bold text-center">SELECT TRACK</div>
+
+            <!-- Songs -->
+            <div class="song-list mb-3">
+                <button class="btn btn-pixel-song active w-100 mb-1" data-src="assets/audio/lofi-bg.mp3">
+                    ▶ 1. Cozy Focus
+                </button>
+                <button class="btn btn-pixel-song w-100 mb-1" data-src="assets/audio/rainy-day.mp3">
+                    ▶ 2. Soft Rain
+                </button>
+                <button class="btn btn-pixel-song w-100" data-src="assets/audio/cafe-vibes.mp3">
+                    ▶ 3. Lofi Cafe
+                </button>
+            </div>
+
+            <!-- Volume Slider -->
+            <div class="volume-control">
+                <label for="volumeSlider" class="form-label mb-1">VOLUME</label>
+                <input type="range" class="form-range pixel-slider" id="volumeSlider" min="0" max="1" step="0.05"
+                    value="0.5">
+            </div>
+        </div>
+    </div>
+
+    <!-- Logo -->
+    <div class="top-logo">
+        <a href="index.html" class="d-flex align-items-center text-decoration-none">
+            <img src="assets/images/LOGO.png" class="top-logo-img" alt="Fluffodoro Mini Logo">
+            <span class="top-logo-text ms-2 d-none d-sm-inline">FLUFFODORO</span>
+        </a>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-11 col-md-8 col-lg-6 text-center">
+
+                <div class="logo-wrapper mb-0">
+
+                    <!-- Left Floating Cloud -->
+                    <img src="assets/images/CLOUD.png" class="floating-cloud cloud-left" alt="Pixel Cloud">
+                    <img src="assets/images/CLOUD.png" class="floating-cloud cloud-left1" alt="Pixel Cloud">
+                    <img src="assets/images/CLOUD.png" class="floating-cloud cloud-left2" alt="Pixel Cloud">
+
+                    <!-- Main Mascot -->
+                    <img src="assets/images/MASCOT.png" class="img-fluid logo-img" alt="Fluffodoro Logo">
+
+                    <!-- Right Floating Cloud -->
+                    <img src="assets/images/CLOUD.png" class="floating-cloud cloud-right" alt="Pixel Cloud">
+                    <img src="assets/images/CLOUD.png" class="floating-cloud cloud-right1" alt="Pixel Cloud">
+                    <img src="assets/images/CLOUD.png" class="floating-cloud cloud-right2" alt="Pixel Cloud">
+                </div>
+
+                <!-- Card Container -->
+                <div class="card fluffodoro-card p-4">
+                    <h1 class="mb-4 pixel-font text-uppercase">Fluffodoro</h1>
+                    <p class="pixel-subtitle mb-4">Your cozy corner for big goals.</p>
+
+                    <!-- Action Button -->
+                    <div>
+                        <button class="btn btn-pixel" id="planTasksBtn">PLAN YOUR TASKS</button>
+                    </div>
+                </div>
+
+                <!-- Popup Notification -->
+                <div class="pixel-toast d-none" id="pixelToast">
+                    <span class="toast-star">✧</span> LET'S GET COZY! OPENING YOUR PLANNER...
+                </div>
+
+                <!-- Footer -->
+                <div class="footer-text mt-4 pixel-font text-uppercase">
+                    <p class="pixel-footer mb-0">MADE BY HANNA ♥</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const planTasksBtn = document.getElementById('planTasksBtn');
+        const pixelToast = document.getElementById('pixelToast');
+
+        if (planTasksBtn && pixelToast) {
+            planTasksBtn.addEventListener('click', () => {
+                pixelToast.classList.remove('d-none');
+                setTimeout(() => {
+                    window.location.href = 'plan.html';
+                }, 2000);
+            });
+        }
+    </script>
+
+    <!-- Background Music Sync Controller -->
+    <script src="audio-sync.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,695 @@
+/* index.html */
+
+/* Background */
+.fluffodoro-bg {
+  background-color: #FDF3F5;
+  background-image: radial-gradient(#F5C8D0 2px, transparent 2px);
+  background-size: 16px 16px; 
+  background-position: 0 0;
+  min-height: 100vh;
+}
+
+/* Pixel Image Rendering */
+img {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+/* Logo */
+.top-logo {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+}
+
+.top-logo-img {
+  width: 50px;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(2px 2px 0px #4A2B3B);
+  transition: transform 0.2s ease;
+}
+
+.top-logo:hover .top-logo-img {
+  transform: scale(1.1);
+}
+
+/* Logo Text */
+.top-logo-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.75rem;
+  color: #4A2B3B;
+  letter-spacing: 1px;
+}
+
+/* Mascot & Cloud */
+.logo-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 30%;
+  min-width: 140px;
+}
+
+.logo-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.floating-cloud {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Left Cloud */
+.cloud-left {
+  top: -15px;
+  left: -100px;
+  width: 100px;
+  animation: floatLeft 3.5s ease-in-out infinite alternate;
+}
+
+.cloud-left1 {
+  top: 100px;
+  left: -150px;
+  width: 60px;
+  animation: floatLeft 3.5s ease-in-out infinite alternate;
+}
+
+.cloud-left2 {
+  top: 50px;
+  left: -250px;
+  width: 60px;
+  animation: floatLeft 3.5s ease-in-out infinite alternate;
+}
+
+/* Right Cloud */
+.cloud-right {
+  bottom: 10px;
+  right: -85px;
+  width: 60px;
+  animation: floatRight 4s ease-in-out infinite alternate;
+}
+
+.cloud-right1 {
+  bottom: 100px;
+  right: -150px;
+  width: 100px;
+  animation: floatRight 4s ease-in-out infinite alternate;
+}
+
+.cloud-right2 {
+  bottom: 40px;
+  right: -250px;
+  width: 60px;
+  animation: floatRight 4s ease-in-out infinite alternate;
+}
+
+/* Floating Animations */
+@keyframes floatLeft {
+  0% {
+    transform: translateY(0px) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+@keyframes floatRight {
+  0% {
+    transform: translateY(0px) rotate(2deg);
+  }
+  100% {
+    transform: translateY(-12px) rotate(-2deg);
+  }
+}
+
+/* Pixel Card */
+.fluffodoro-card {
+  background-color: #FFF9F8;
+  border: 4px solid #4A2B3B;
+  border-radius: 0; 
+  box-shadow: 6px 6px 0px #4A2B3B; 
+  color: #4A2B3B;
+}
+
+/* Pixel Heading */
+.pixel-font {
+  font-family: 'Press Start 2P', cursive;
+  color: #4A2B3B;
+  font-size: 3rem;
+  line-height: 1.4;
+  image-rendering: pixelated;
+  -webkit-font-smoothing: none;
+}
+
+/* Pixel Subtitle */
+.pixel-subtitle {
+  font-family: 'VT323', monospace;
+  color: #4A2B3B;
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+}
+
+/* Pixel Footer */
+.pixel-footer {
+  font-family: 'VT323', monospace;
+  color: #4A2B3B;
+  font-size: 1.0rem;
+  letter-spacing: 2px;
+  margin-top: 2rem;  
+}
+
+/* Main Action Button */
+.btn-pixel {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.85rem;
+  background-color: #F5C8D0;
+  color: #4A2B3B;
+  border: 3px solid #4A2B3B;
+  border-radius: 0;
+  box-shadow: 4px 4px 0px #4A2B3B;
+  padding: 10px 16px;
+  transition: all 0.1s ease;
+}
+
+.btn-pixel:hover {
+  background-color: #EEA8B8;
+  color: #4A2B3B;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0px #4A2B3B;
+}
+
+.btn-pixel:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px #4A2B3B;
+}
+
+/* Music Container */
+.music-menu-container {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.music-menu-bar {
+  display: flex;
+  gap: 6px;
+}
+
+/* Small Button Variant */
+.btn-pixel-sm {
+  font-size: 0.7rem;
+  padding: 6px 10px;
+  box-shadow: 3px 3px 0px #4A2B3B;
+  border-width: 2px;
+}
+
+.btn-pixel-sm:hover {
+  box-shadow: 1px 1px 0px #4A2B3B;
+  transform: translate(2px, 2px);
+}
+
+.btn-pixel-sm:active {
+  box-shadow: 0px 0px 0px #4A2B3B;
+  transform: translate(3px, 3px);
+}
+
+/* Dropdown */
+.pixel-music-panel {
+  background-color: #FFF9F8;
+  border: 3px solid #4A2B3B;
+  box-shadow: 4px 4px 0px #4A2B3B;
+  padding: 12px;
+  margin-top: 8px;
+  width: 220px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.65rem;
+  color: #4A2B3B;
+}
+
+/* Song Selector Buttons */
+.btn-pixel-song {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  background-color: #FDF3F5;
+  color: #4A2B3B;
+  border: 2px solid #4A2B3B;
+  text-align: left;
+  padding: 6px 8px;
+  border-radius: 0;
+  transition: all 0.1s ease;
+}
+
+.btn-pixel-song:hover {
+  background-color: #F5C8D0;
+  color: #4A2B3B;
+}
+
+.btn-pixel-song.active {
+  background-color: #EEA8B8;
+  font-weight: bold;
+  box-shadow: inset 2px 2px 0px #4A2B3B;
+}
+
+/* Slider */
+.pixel-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.pixel-slider:focus {
+  outline: none;
+}
+
+.pixel-slider::-webkit-slider-runnable-track {
+  background: #FDF3F5;
+  border: 2px solid #4A2B3B;
+  height: 10px;
+}
+
+.pixel-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 18px;
+  width: 12px;
+  background-color: #EEA8B8;
+  border: 2px solid #4A2B3B;
+  border-radius: 0;
+  margin-top: -6px;
+}
+
+.pixel-slider::-moz-range-track {
+  background: #FDF3F5;
+  border: 2px solid #4A2B3B;
+  height: 10px;
+}
+
+.pixel-slider::-moz-range-thumb {
+  height: 18px;
+  width: 12px;
+  background-color: #EEA8B8;
+  border: 2px solid #4A2B3B;
+  border-radius: 0;
+}
+
+/* Popup Notification */
+.pixel-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #4A2B3B; 
+  color: #FFF9F8;             
+  border: 3px solid #FFF9F8;  
+  box-shadow: 0 0 0 3px #4A2B3B, 4px 4px 0px rgba(0, 0, 0, 0.2); 
+  padding: 12px 24px;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  z-index: 2000;
+  text-align: center;
+  white-space: nowrap;
+  animation: slideUp 0.3s ease-out;
+}
+
+.toast-star {
+  color: #F5C8D0;
+  margin-right: 6px;
+}
+
+/* Animation */
+@keyframes slideUp {
+  from {
+    bottom: -60px;
+    opacity: 0;
+  }
+  to {
+    bottom: 24px;
+    opacity: 1;
+  }
+}
+
+/* plan.html */
+
+.pixel-font-plan {
+  font-family: 'Press Start 2P', cursive;
+  color: #4A2B3B;
+  font-size: 2.2rem;
+  line-height: 1.4;
+  image-rendering: pixelated;
+}
+
+/* Task Selection Buttons */
+.task-mode-btn {
+  min-width: 160px;
+}
+
+/* Modal Overlay */
+.pixel-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(74, 43, 59, 0.45);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal Box */
+.pixel-modal-content {
+  background-color: #FFF9F8;
+  border: 4px solid #4A2B3B;
+  box-shadow: 6px 6px 0px #4A2B3B;
+  width: 90%;
+  max-width: 440px;
+  font-family: 'Press Start 2P', cursive;
+  color: #4A2B3B;
+}
+
+.pixel-modal-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.85rem;
+  color: #4A2B3B;
+}
+
+.btn-pixel-close {
+  background: none;
+  border: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.2rem;
+  color: #4A2B3B;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.btn-pixel-close:hover {
+  color: #EEA8B8;
+}
+
+/* Forms */
+.pixel-label {
+  font-size: 0.65rem;
+  margin-bottom: 6px;
+  color: #4A2B3B;
+}
+
+.pixel-input {
+  font-family: 'VT323', monospace;
+  font-size: 1.5rem;
+  background-color: #FDF3F5;
+  border: 2px solid #4A2B3B;
+  border-radius: 0;
+  color: #4A2B3B;
+  padding: 6px 12px;
+}
+
+.pixel-input:focus {
+  background-color: #FFF9F8;
+  border-color: #EEA8B8;
+  box-shadow: none;
+  outline: none;
+}
+
+/* Task List Container */
+.task-list-container {
+  margin-top: 2rem;
+  border-top: 2px dashed #4A2B3B;
+  padding-top: 1.5rem;
+}
+
+.task-list-header {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.75rem;
+  color: #4A2B3B;
+}
+
+/* Task Item */
+.pixel-task-item {
+  background-color: #FDF3F5;
+  border: 2px solid #4A2B3B;
+  box-shadow: 3px 3px 0px #4A2B3B;
+  font-family: 'VT323', monospace;
+  font-size: 1.4rem;
+  color: #4A2B3B;
+}
+
+.pixel-bullet {
+  color: #EEA8B8;
+  font-size: 1rem;
+}
+
+.task-mode-badge {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.55rem;
+  background-color: #EEA8B8;
+  color: #4A2B3B;
+  padding: 3px 6px;
+  border: 1px solid #4A2B3B;
+}
+
+.btn-pixel-delete {
+  background: none;
+  border: none;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
+  color: #4A2B3B;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.btn-pixel-delete:hover {
+  color: #EEA8B8;
+}
+
+/* Recommended Time */
+.pixel-hint {
+  font-family: 'VT323', monospace;
+  font-size: 1.1rem;
+  color: #E08CA0; 
+  line-height: 1.2;
+}
+
+.task-time-badge {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.55rem;
+  background-color: #FDF3F5;
+  color: #4A2B3B;
+  padding: 3px 6px;
+  border: 1px solid #4A2B3B;
+}
+
+.fluffodoro-card {
+  position: relative;
+  overflow: visible !important;
+}
+
+.floating-cloud {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(2px 2px 0px rgba(74, 43, 59, 0.12));
+}
+
+/* Floating Animations */
+@keyframes floatUp {
+  0% {
+    transform: translateY(0px) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+@keyframes floatDown {
+  0% {
+    transform: translateY(0px) rotate(1deg);
+  }
+  100% {
+    transform: translateY(8px) rotate(-2deg);
+  }
+}
+
+/* Clouds */
+.cloud-plan-left1 {
+  top: -5px;
+  left: -50px;
+  width: 75px;
+  animation: floatUp 3.6s ease-in-out infinite alternate;
+}
+
+.cloud-plan-left2 {
+  bottom: 30px;
+  left: -65px;
+  width: 100px;
+  animation: floatDown 4.2s ease-in-out 0.5s infinite alternate;
+}
+
+.cloud-plan-right1 {
+  top: 10px;
+  right: -85px;
+  width: 100px;
+  animation: floatDown 3.8s ease-in-out 0.2s infinite alternate;
+}
+
+.cloud-plan-right2 {
+  bottom: 20px;
+  right: -50px;
+  width: 65px;
+  animation: floatUp 4.5s ease-in-out 0.7s infinite alternate;
+}
+
+/* timer.html */
+
+/* Progress Timer */
+.timer-circle-wrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+.timer-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg); 
+}
+
+.timer-circle-border-outer,
+.timer-circle-border-inner {
+  fill: none;
+  stroke: #4A2B3B;
+  stroke-width: 2;
+}
+
+/*  Track Circle */
+.timer-circle-bg {
+  fill: none;
+  stroke: #FDF3F5;
+  stroke-width: 10;
+}
+
+/* Animated Progress  */
+.timer-circle-progress {
+  fill: none;
+  stroke: #EEA8B8;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 276.46;
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 1s linear;
+}
+
+/* Cloud Indicator at Progress Tip */
+.timer-cloud-marker {
+  position: absolute;
+  width: 32px;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  margin-top: -16px;
+  margin-left: -16px;
+  pointer-events: none;
+  z-index: 10;
+  filter: drop-shadow(1px 1px 0px #4A2B3B);
+}
+
+/*  Mascot Container */
+.timer-center-logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.floating-mascot {
+  width: 90%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0px 3px 0px rgba(74, 43, 59, 0.15));
+  animation: mascotFloat 3s ease-in-out infinite alternate;
+}
+
+@keyframes mascotFloat {
+  0% { transform: translateY(0px) rotate(-1deg); }
+  50% { transform: translateY(-6px) rotate(1deg); }
+  100% { transform: translateY(0px) rotate(-1deg); }
+}
+
+.timer-center-logo img {
+  width: 70%;
+  height: auto;
+}
+
+/* Stop Button */
+.btn-control-square {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  background-color: #F5C8D0;
+}
+
+/* Play/Pause Button */
+.btn-control-main {
+  height: 48px;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 16px;
+}
+
+
+.btn-control-main .btn-text {
+  display: inline-block;
+  transform: translateY(1px); 
+}
+
+
+.btn-control-main .btn-icon {
+  display: inline-block;
+  font-size: 0.8rem;
+  line-height: 1;
+  transform: translateY(-1px); 
+}
+
+/* Countdown */
+.timer-countdown-display {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2.2rem;
+  color: #4A2B3B;
+  background-color: #FDF3F5;
+  border: 3px solid #4A2B3B;
+  box-shadow: 4px 4px 0px #4A2B3B;
+  padding: 12px 20px;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0px #EEA8B8;
+}

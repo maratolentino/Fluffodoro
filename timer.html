@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluffodoro - Timer</title>
+    <!-- Browser Tab Logo -->
+    <link rel="icon" type="image/png" href="assets/images/LOGO.png">
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="fluffodoro-bg d-flex align-items-center">
+
+    <!-- Music Container  -->
+    <div class="music-menu-container">
+        <div class="music-menu-bar">
+            <button class="btn btn-pixel btn-pixel-sm" id="musicToggleBtn" title="Toggle Music Menu">
+                🎵 <span class="d-none d-sm-inline" id="musicStatusText">MUSIC: OFF</span>
+            </button>
+        </div>
+
+        <!-- Music Dropdown -->
+        <div class="pixel-music-panel d-none" id="musicPanel">
+            <div class="panel-header mb-2 fw-bold text-center">SELECT TRACK</div>
+
+            <!-- Songs -->
+            <div class="song-list mb-3">
+                <button class="btn btn-pixel-song active w-100 mb-1" data-src="assets/audio/lofi-bg.mp3">
+                    ▶ 1. Cozy Focus
+                </button>
+                <button class="btn btn-pixel-song w-100 mb-1" data-src="assets/audio/rainy-day.mp3">
+                    ▶ 2. Soft Rain
+                </button>
+                <button class="btn btn-pixel-song w-100" data-src="assets/audio/cafe-vibes.mp3">
+                    ▶ 3. Lofi Cafe
+                </button>
+            </div>
+
+            <!-- Volume Slider -->
+            <div class="volume-control">
+                <label for="volumeSlider" class="form-label mb-1">VOLUME</label>
+                <input type="range" class="form-range pixel-slider" id="volumeSlider" min="0" max="1" step="0.05"
+                    value="0.5">
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Logo -->
+    <div class="top-logo">
+        <a href="index.html" class="d-flex align-items-center text-decoration-none">
+            <img src="assets/images/LOGO.png" class="top-logo-img" alt="Fluffodoro Mini Logo">
+            <span class="top-logo-text ms-2 d-none d-sm-inline">FLUFFODORO</span>
+        </a>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-11 col-md-8 col-lg-6 text-center">
+
+                <!-- Timer Card -->
+                <div class="card fluffodoro-card p-4 p-md-5">
+
+                    <!-- Background Floating Clouds -->
+                    <img src="assets/images/CLOUD.png" class="floating-cloud cloud-plan-left1" alt="Pixel Cloud">
+                    <img src="assets/images/CLOUD.png" class="floating-cloud cloud-plan-left2" alt="Pixel Cloud">
+                    <img src="assets/images/CLOUD.png" class="floating-cloud cloud-plan-right1" alt="Pixel Cloud">
+                    <img src="assets/images/CLOUD.png" class="floating-cloud cloud-plan-right2" alt="Pixel Cloud">
+
+                    <!-- Header Title -->
+                    <h1 class="pixel-font-plan text-uppercase mb-4" id="timerTaskTitle">FOCUS SESSION</h1>
+
+                    <!-- Progress Timer -->
+                    <div class="timer-circle-wrapper mx-auto mb-4">
+                        <svg class="timer-svg" viewBox="0 0 100 100">
+                            
+                            <circle class="timer-circle-border-outer" cx="50" cy="50" r="48"></circle>
+                            <circle class="timer-circle-border-inner" cx="50" cy="50" r="40"></circle>
+                            <circle class="timer-circle-bg" cx="50" cy="50" r="44"></circle>
+                            <circle class="timer-circle-progress" id="timerProgress" cx="50" cy="50" r="44"></circle>
+                        </svg>
+
+                        <!--  Cloud Marker -->
+                        <img src="assets/images/CLOUD.png" class="timer-cloud-marker" id="cloudMarker"
+                            alt="Timer Cloud Marker">
+
+                        <!--  Floating Mascot -->
+                        <div class="timer-center-logo">
+                            <img src="assets/images/MASCOT.png" class="floating-mascot" alt="Fluffodoro Mascot">
+                        </div>
+                    </div>
+
+                    <!-- Controls Row -->
+                    <div class="d-flex justify-content-center align-items-center gap-3 mb-3">
+                        <button class="btn btn-pixel btn-control-square" id="stopBtn" title="Stop Task">
+                            ■
+                        </button>
+                        <button class="btn btn-pixel btn-control-main flex-grow-1" id="toggleBtn">
+                            <span class="btn-icon">⏸</span>
+                            <span class="btn-text">PAUSE</span>
+                        </button>
+                    </div>
+
+                    <!-- Time Countdown -->
+                    <div class="timer-countdown-display" id="timerDisplay">
+                        25:00
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="footer-text mt-4 pixel-font text-uppercase">
+                    <p class="pixel-footer mb-0">MADE BY HANNA <span class="pixel-heart">♥</span></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup Notification -->
+    <div class="pixel-toast d-none" id="timerToast">
+        <span class="toast-star">✧</span> <span id="toastMessage">TIME'S UP! NEXT TASK LOADING...</span>
+    </div>
+
+
+    <script>
+        const savedTasks = JSON.parse(localStorage.getItem('fluffodoro_tasks')) || [];
+
+        const timerTaskTitle = document.getElementById('timerTaskTitle');
+        const timerProgress = document.getElementById('timerProgress');
+        const timerDisplay = document.getElementById('timerDisplay');
+        const toggleBtn = document.getElementById('toggleBtn');
+        const stopBtn = document.getElementById('stopBtn');
+        const timerToast = document.getElementById('timerToast');
+        const toastMessage = document.getElementById('toastMessage');
+
+        const currentTask = savedTasks.length > 0 ? savedTasks[0] : { name: "FOCUS SESSION", time: 25 };
+        timerTaskTitle.textContent = currentTask.name.toUpperCase();
+
+        // Calculate Total Countdown Duration
+        let totalTimeSeconds = (currentTask.time || 25) * 60;
+        let timeRemaining = totalTimeSeconds;
+        let timerInterval = null;
+        let isRunning = true;
+
+        const FULL_DASH_ARRAY = 276.46; // 2 * π * r (r=44)
+
+        const cloudMarker = document.getElementById('cloudMarker');
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timeRemaining / 60);
+            const seconds = timeRemaining % 60;
+            timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+            const fraction = timeRemaining / totalTimeSeconds;
+            const dashoffset = FULL_DASH_ARRAY * (1 - fraction);
+            timerProgress.style.strokeDashoffset = dashoffset;
+
+            // Calculate Cloud Marker position (Radius = 97px)
+            const angleRad = (fraction * 360 - 90) * (Math.PI / 180);
+            const radius = 97; 
+            const x = Math.cos(angleRad) * radius;
+            const y = Math.sin(angleRad) * radius;
+            cloudMarker.style.transform = `translate(${x}px, ${y}px)`;
+        }
+
+        function startTimer() {
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (timeRemaining > 0) {
+                    timeRemaining--;
+                    updateTimerDisplay();
+                } else {
+                    clearInterval(timerInterval);
+                    timerDisplay.textContent = "00:00";
+
+                    savedTasks.shift();
+                    localStorage.setItem('fluffodoro_tasks', JSON.stringify(savedTasks));
+
+                    if (savedTasks.length > 0) {
+                        toastMessage.textContent = "TIME'S UP! NEXT TASK LOADING...";
+                        timerToast.classList.remove('d-none');
+
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 2000);
+                    } else {
+                        toastMessage.textContent = "ALL TASKS COMPLETED! GREAT JOB!";
+                        timerToast.classList.remove('d-none');
+
+                        setTimeout(() => {
+                            window.location.href = 'plan.html';
+                        }, 2000);
+                    }
+                }
+            }, 1000);
+        }
+
+        // Play / Pause Button
+        toggleBtn.addEventListener('click', () => {
+            if (isRunning) {
+                clearInterval(timerInterval);
+                isRunning = false;
+                toggleBtn.querySelector('.btn-icon').textContent = '▶';
+                toggleBtn.querySelector('.btn-text').textContent = 'PLAY';
+            } else {
+                startTimer();
+                isRunning = true;
+                toggleBtn.querySelector('.btn-icon').textContent = '⏸';
+                toggleBtn.querySelector('.btn-text').textContent = 'PAUSE';
+            }
+        });
+
+        // Stop Square Button (Redirects back to plan.html)
+        stopBtn.addEventListener('click', () => {
+            clearInterval(timerInterval);
+            window.location.href = 'plan.html';
+        });
+
+        startTimer();
+        updateTimerDisplay();
+    </script>
+
+    <!-- Background Music Sync Controller -->
+    <script src="audio-sync.js"></script>
+
+</body>
+
+</html>
